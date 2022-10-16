@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'http://localhost:8080/api/public',
+   firebaseConfig : {
+    apiKey: 'AIzaSyAi3QroMXuJoXGySOqcMhTd2aHPXMpwqac',
+    authDomain: 'sprint2-fc482.firebaseapp.com',
+     databaseURL: 'https://sprint2-fc482-default-rtdb.asia-southeast1.firebasedatabase.app/',
+    projectId: 'sprint2-fc482',
+    storageBucket: 'sprint2-fc482.appspot.com',
+    messagingSenderId: '139352620381',
+    appId: '1:139352620381:web:6555967fe49c5737cd7cb4',
+    measurementId: 'G-V576RNC23H'
+  }
 };
 
 /*

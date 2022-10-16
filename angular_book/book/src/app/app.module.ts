@@ -3,13 +3,35 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {BodyComponent} from "./body/body.component";
-import {LoginComponent} from "./login/login.component";
-import {CartComponent} from "./cart/cart.component";
-import {DetailComponent} from "./detail/detail.component";
+import {BookRoutingModule} from "./management-book/book-routing.module";
+import {HttpClientModule} from "@angular/common/http";
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {LoginModule} from "./login/login.module";
+import {DetailModule} from "./detail/detail.module";
+import {CartModule} from "./cart/cart.module";
+import {BodyModule} from "./body/body.module";
+import {BookModule} from "./management-book/book.module";
+import {ToastrModule} from "ngx-toastr";
+import {MatSliderModule} from "@angular/material/slider";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {AngularFireModule} from "@angular/fire";
+import {environment} from "../environments/environment";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
+
 
 
 @NgModule({
@@ -17,14 +39,37 @@ import {DetailComponent} from "./detail/detail.component";
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BodyComponent,
-    LoginComponent,
-    CartComponent,
-    DetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    FormsModule,
+    LoginModule,
+    DetailModule,
+    CartModule,
+    BodyModule,
+    BookModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatTabsModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatCheckboxModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

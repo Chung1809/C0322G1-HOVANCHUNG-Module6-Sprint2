@@ -1,0 +1,10 @@
+
+]	java:S125"<This block of commented-out lines of code should be removed.(Ïê”Œøÿÿÿÿ8µĞ‹º0
+R
+java:S1854"7Remove this useless assignment to local variable "var".(ø”—²ûÿÿÿÿ
+P
+java:S6213":Rename this variable to not match a restricted identifier.(À¶€Ú
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Ù¿éûÿÿÿÿ
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(â‹ùíıÿÿÿÿ8ÿÀÏ‹º0
+0
+java:S1220""Move this file to a named package.

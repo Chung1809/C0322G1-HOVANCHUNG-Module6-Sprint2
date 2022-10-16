@@ -18,6 +18,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.jetbrains:annotations:20.1.0'
+
 }
 
 tasks.named('test') {

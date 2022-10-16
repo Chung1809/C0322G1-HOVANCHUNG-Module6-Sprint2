@@ -4,26 +4,12 @@ import {LoginComponent} from "./login/login.component";
 import {CartComponent} from "./cart/cart.component";
 import {DetailComponent} from "./detail/detail.component";
 import {BodyComponent} from "./body/body.component";
+import {ListBookComponent} from "./management-book/list-book/list-book.component";
 
 
-const routes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'cart',
-    component: CartComponent
-  }
-  ,{
-    path: 'detail',
-    component: DetailComponent
-  }
-  ,{
-    path: '',
-    component: BodyComponent
-  }
-];
+const routes: Routes = []
+
+;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

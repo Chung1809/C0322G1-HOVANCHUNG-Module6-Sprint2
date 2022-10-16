@@ -1,0 +1,59 @@
+.formRow {
+  display: flex;
+  justify-content: center;;
+}
+
+.ads-title{
+  font-weight: bolder;
+  text-align: center;
+  font-size: 32px;
+  font-family: "Raleway", sans-serif;
+}
+
+.formRow_create {
+  border-radius: 15px;
+  padding: 15px 15px 15px 15px;
+  box-shadow: 2px 7px 9px 3px #1b191933;
+  background: white;
+  opacity: 85%
+}
+
+.form-text {
+  color: red;
+}
+
+.body {
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  padding: 20px;
+}
+.container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+  opacity: 85%;
+}
+
+hr {
+  border: none;
+  height: 20px;
+  width: 90%;
+  border-bottom: 2px solid #1f1209;
+  box-shadow: 0 20px 20px -20px #242323;
+}
+
+.button {
+  display: flex;
+  justify-content: center
+}
+
+#table {
+  text-align: center;
+  border-radius: 20px
+}
+
+th {
+  color: white !important;
+}

@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@RequestMapping("book")
+@RequestMapping("/api/public/book")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class BookController {
@@ -34,7 +34,7 @@ public class BookController {
         return new ResponseEntity<>(categoryService.findAllCategory(), HttpStatus.OK);
     }
     @GetMapping("/list")
-    public ResponseEntity<Page<Book>> findAllBook(@PageableDefault(value = 6) Pageable pageable,
+    public ResponseEntity<Page<Book>> findAllBook(@PageableDefault(value = 5) Pageable pageable,
                                                   @RequestParam Optional<String> name,
                                                   @RequestParam Optional<String> category) {
         String nameSearch = name.orElse("");
