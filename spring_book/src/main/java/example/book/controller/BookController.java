@@ -1,10 +1,8 @@
 package example.book.controller;
 
 import example.book.dto.BookDto;
-import example.book.model.Book;
-import example.book.model.Category;
-import example.book.service.IBookService;
-import example.book.service.ICategoryService;
+import example.book.model.*;
+import example.book.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,13 +26,36 @@ public class BookController {
     private IBookService bookService;
     @Autowired
     private ICategoryService categoryService;
+    @Autowired
+    private IDiscountService discountService;
+//    @Autowired
+//    private ICartService cartService;
+    @Autowired
+    private IUserService userService;
+
 
     @GetMapping("/list/category")
     public ResponseEntity<List<Category>> findAllPlacement() {
         return new ResponseEntity<>(categoryService.findAllCategory(), HttpStatus.OK);
     }
+    @GetMapping("/list/discount")
+    public ResponseEntity<List<Discount>> findAllDiscount() {
+        return new ResponseEntity<>(discountService.findAllDiscount(), HttpStatus.OK);
+    }
+    @GetMapping("/list/book")
+    public ResponseEntity<List<Book>> findAllBook() {
+        return new ResponseEntity<>(bookService.findAllBooks(), HttpStatus.OK);
+    }
+    @GetMapping("/list/user/{user}")
+    public ResponseEntity<AppUser> findAll(@PathVariable("user") String user) {
+        if("".equals(user)){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(userService.findByName(user),HttpStatus.OK);
+    }
+
     @GetMapping("/list")
-    public ResponseEntity<Page<Book>> findAllBook(@PageableDefault(value = 5) Pageable pageable,
+    public ResponseEntity<Page<Book>> findAllBook(@PageableDefault(value = 8) Pageable pageable,
                                                   @RequestParam Optional<String> name,
                                                   @RequestParam Optional<String> category) {
         String nameSearch = name.orElse("");
@@ -44,6 +65,16 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+    @GetMapping("/list/categorySearch")
+    public ResponseEntity<Page<Book>> findAllCategory(@PageableDefault(value = 8) Pageable pageable,
+                                                  @RequestParam(defaultValue = "") String name,
+                                                  @RequestParam(defaultValue = "0") Integer category) {
+        Page<Book> serviceAllCategory = bookService.findAllCategory(pageable, category,name);
+        if (serviceAllCategory.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(serviceAllCategory, HttpStatus.OK);
     }
     @PostMapping("/create")
     public ResponseEntity<Object> createBook(@RequestBody @Valid BookDto bookDto, BindingResult bindingResult) {
@@ -73,9 +104,18 @@ public class BookController {
 
     }
     @DeleteMapping("/delete/{id}")
-    private ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id,
+                                    @PageableDefault(value = 8) Pageable pageable,
+                                    @RequestParam Optional<String> name,
+                                    @RequestParam Optional<String> category) {
+        String nameSearch = name.orElse("");
+        String categorySearch = category.orElse("");
+        Page<Book> book = bookService.findAllBook(pageable, nameSearch,categorySearch);
+        if (book.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         bookService.deleteBook(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(book,HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
@@ -86,4 +126,14 @@ public class BookController {
             return new ResponseEntity<>(book, HttpStatus.OK);
         }
     }
+
+//    @PostMapping("/add/cart")
+//    public ResponseEntity<Object> addCart(@RequestBody CartDetail cartDetail, BindingResult bindingResult){
+//        if(bindingResult.hasErrors()){
+//            return new ResponseEntity<> (bindingResult.getAllErrors(),HttpStatus.BAD_REQUEST);
+//        }else {
+//            cartService.addCart(cartDetail);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }
+//    }
 }

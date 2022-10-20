@@ -85,6 +85,18 @@
             </div>
           </div>
           </div>
+        <div class="mx-4">
+        <div class="mb-3">
+            <div class="col-lg-6 d-grid">
+              <mat-form-field appearance="outline">
+                <mat-label>Mã giảm giá<span><i>(*)</i></span></mat-label>
+                <mat-select formControlName="discount">
+                  <mat-option *ngFor="let discount of discountList" [value]="discount">{{discount.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+        </div>
+        </div>
           <div class="mb-3">
             <div class="row">
               <div class="col-lg-12 d-grid">

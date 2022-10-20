@@ -23,7 +23,6 @@ export class ListBookComponent implements OnInit {
 
   categorySearch = '';
   nameSearch = '';
-  authorSearch = '';
   bookList: Book [] = [];
   categoryList: Category [] = [];
   number: number;

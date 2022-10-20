@@ -1,0 +1,160 @@
+<div class="body" style="margin-top: 90px">
+  <div class="container py-5">
+    <div class="row ">
+      <div class="col-lg-2"></div>
+      <form class="col-lg-8 formRow_create" [formGroup]="bookForm">
+        <div class="mb-3 text-center">
+          <strong> <h5 class="formRow_create_title">SỬA SÁCH</h5></strong>
+        </div>
+        <hr>
+        <div class="mx-4">
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Mã Sách <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Nhập Mã Sách" formControlName="code">
+                  </label>
+                  <!--                  <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Tên Sách <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Nhập Tên Sách" formControlName="name">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Tác Giả <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Nhập Tên Tác Giả" formControlName="author">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nhà Xuất Bản <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Nhà Xuất Bản" formControlName="publisher">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Số Trang <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Số Trang" formControlName="totalPage">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Giá Sách <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="text" placeholder="Nhập Giá Sách" formControlName="price">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Ngày Xuất Bản <span><i>(*)</i></span></mat-label>
+                  <label>
+                    <input matInput type="date" formControlName="releaseDate">
+                  </label>
+                  <!--        <mat-error></mat-error>-->
+                </mat-form-field>
+              </div>
+              <div class="col-lg-6 d-grid">
+                <mat-form-field appearance="outline">
+                  <mat-label>Danh Mục <span><i>(*)</i></span></mat-label>
+                  <mat-select formControlName="category" [compareWith]="compare">
+                    <mat-option *ngFor="let category of categoryList" [value]="category">{{category.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mx-4">
+          <div class="mb-3">
+            <div class="col-lg-6 d-grid">
+              <mat-form-field appearance="outline">
+                <mat-label>Mã giảm giá<span><i>(*)</i></span></mat-label>
+                <mat-select formControlName="discount" [compareWith]="compare">
+                  <mat-option *ngFor="let discount of discountList" [value]="discount">{{discount.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-lg-12 d-grid">
+              <mat-form-field appearance="outline">
+                <mat-label>Giới thiệu <span><i>(*)</i></span></mat-label>
+                <textarea matInput type="textarea" rows="5" formControlName="description"></textarea>
+                <!--        <mat-error></mat-error>-->
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="row">
+            <div class="col-lg-12 d-grid">
+              <!--                <mat-form-field appearance="outline">-->
+              <label class="form-label">Chọn Ảnh <span><i>(*)</i></span></label>
+              <img  *ngIf="!editImageState" style="width: 300px ; height: 200px" (click)="fileInput.click()" [src]="bookForm.get('image').value"   alt="">
+              <input hidden (change)="selectFile($event); onFileSelected($event)" #fileInput type="file">
+              <img  class="form-control mt-2" (click)="fileInput.click()" [src]="url" *ngIf="editImageState" style="width: 300px ; height: 200px" alt="">
+              <div class="form-text" *ngIf="checkImgSize == true">Kích thước ảnh quá lớn.</div>
+              <div class="form-text" *ngIf="checkImg == true && checkImgSize == false && regexImageUrl == false">Vui
+                lòng chọn ảnh.
+              </div>
+              <div class="form-text" *ngIf="regexImageUrl == true && checkImgSize == false">Chỉ chấp nhận ảnh có định
+                dạng .jpg.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-around">
+          <a routerLink="">
+            <button mat-raised-button color="warn" [routerLink]="['']"> Quay Lại</button>
+          </a>
+          <button *ngIf="buttonBook" type="submit" mat-raised-button color="primary" (click)="submit()"> Sửa
+          </button>
+          <button *ngIf="!buttonBook" mat-raised-button color="primary" disabled>
+            <div class="spinner-border spinner-border-sm me-1"></div>
+            Đang tải ...
+          </button>
+        </div>
+      </form>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</div>

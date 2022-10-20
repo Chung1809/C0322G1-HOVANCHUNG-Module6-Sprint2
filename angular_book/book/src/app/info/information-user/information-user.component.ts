@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {AppUser} from '../model/appUser';
-import {BookService} from '../service/book.service';
-import {TokenStorageService} from '../service/token-storage.service';
+import {Component, OnInit} from '@angular/core';
+import {BookService} from '../../service/book.service';
+import {AppUser} from '../../model/appUser';
+import {TokenStorageService} from '../../service/token-storage.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-information-user',
+  templateUrl: './information-user.component.html',
+  styleUrls: ['./information-user.component.css']
 })
-export class CartComponent implements OnInit {
+export class InformationUserComponent implements OnInit {
   user: any;
   username: any;
 

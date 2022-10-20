@@ -13,6 +13,7 @@ public class Book {
     private Integer id;
     private String code;
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String price;
     private String image;

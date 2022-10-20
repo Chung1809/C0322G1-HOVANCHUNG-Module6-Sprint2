@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup} from '@angular/forms';
 import { TokenStorageService } from '../service/token-storage.service';
-import {AuthService} from "../service/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {ShareService} from "../service/share.service";
+import {AuthService} from '../service/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {ShareService} from '../service/share.service';
 import Swal from 'sweetalert2';
-import {CookieService} from "ngx-cookie-service";
+import {CookieService} from 'ngx-cookie-service';
+import {BookService} from '../service/book.service';
+import {AppUser} from '../model/appUser';
+
 
 @Component({
   selector: 'app-login',
@@ -19,6 +22,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   username: string;
   returnUrl: string;
+  user: any;
 
 
   constructor(private formBuild: FormBuilder,
@@ -28,10 +32,12 @@ export class LoginComponent implements OnInit {
               private route: ActivatedRoute,
               private toastr: ToastrService,
               private shareService: ShareService,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private bookService: BookService) {
   }
 
   ngOnInit(): void {
+    this.loadHeader();
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '';
     this.formGroup = this.formBuild.group({
         username: [''],
@@ -43,7 +49,13 @@ export class LoginComponent implements OnInit {
     if (this.tokenStorageService.getToken()) {
       this.authService.isLoggedIn = true;
       this.roles = this.tokenStorageService.getUser().roles;
-      this.username = this.tokenStorageService.getUser().username;
+      this.user = this.tokenStorageService.getUser().username;
+    }
+  }
+  loadHeader(): void {
+    if (this.tokenStorageService.getToken()) {
+      this.user = this.tokenStorageService.getUser().username;
+      console.log(this.user);
     }
   }
 

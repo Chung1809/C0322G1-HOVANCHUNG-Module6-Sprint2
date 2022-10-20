@@ -1,21 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
-import {BookService} from "../../service/book.service";
-import {FormControl, FormGroup} from "@angular/forms";
-import {AngularFireStorage} from "@angular/fire/storage";
-import {Title} from "@angular/platform-browser";
-import {formatDate} from "@angular/common";
-import {finalize} from "rxjs/operators";
-import {Category} from "../../model/category";
-import {Discount} from "../../model/discount";
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Category} from '../../model/category';
+import {Discount} from '../../model/discount';
+import {ToastrService} from 'ngx-toastr';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {BookService} from '../../service/book.service';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Title} from '@angular/platform-browser';
+import {finalize} from 'rxjs/operators';
+import {formatDate} from '@angular/common';
 
 @Component({
-  selector: 'app-create-book',
-  templateUrl: './create-book.component.html',
-  styleUrls: ['./create-book.component.css']
+  selector: 'app-edit-book',
+  templateUrl: './edit-book.component.html',
+  styleUrls: ['./edit-book.component.css']
 })
-export class CreateBookComponent implements OnInit {
+export class EditBookComponent implements OnInit {
+
   bookForm: FormGroup;
   selectedImage: File = null;
   categoryList: Category[];
@@ -27,12 +28,18 @@ export class CreateBookComponent implements OnInit {
   url: any;
   msg = '';
   buttonBook = true;
+  bookId: number;
 
   constructor(private toast: ToastrService,
               private route: Router,
               private bookService: BookService,
               private storage: AngularFireStorage,
+              private activatedRoute: ActivatedRoute,
               private title: Title) {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      this.bookId = +paramMap.get('id');
+      this.getId(this.bookId);
+    });
     this.title.setTitle(' Thêm sách ');
   }
 
@@ -58,6 +65,14 @@ export class CreateBookComponent implements OnInit {
       discount: new FormControl(''),
     });
   }
+  getId(bookId: number) {
+    this.bookService.findById(this.bookId).subscribe(next => {
+      this.bookForm.patchValue(next);
+    });
+  }
+  compare(value, option): boolean {
+    return value.id === option.id;
+  }
 
   submit() {
     const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
@@ -68,10 +83,10 @@ export class CreateBookComponent implements OnInit {
         this.buttonBook = false;
         fileRef.getDownloadURL().subscribe((url) => {
           this.bookForm.patchValue({image: url});
-          this.bookService.save(this.bookForm.value).subscribe(
+          this.bookService.update(this.bookId, this.bookForm.value).subscribe(
             () => {
-              this.route.navigateByUrl('/list');
-              this.toast.success('Thêm sách thành công', 'Thông báo', {
+              this.route.navigateByUrl('');
+              this.toast.success('Sửa sách thành công', 'Thông báo', {
                 messageClass: 'center',
                 positionClass: 'toast-top-center'
               });

@@ -1,5 +1,6 @@
 package example.book.service.impl;
 
+import example.book.model.AppUser;
 import example.book.model.Book;
 import example.book.repository.IBookRepository;
 import example.book.service.IBookService;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class BookService implements IBookService {
@@ -37,4 +39,16 @@ public class BookService implements IBookService {
     public void deleteBook(Integer id) {
        repository.deleteBook(id);
     }
+
+    @Override
+    public List<Book> findAllBooks() {
+        return repository.findAllBooks();
+    }
+
+    @Override
+    public Page<Book> findAllCategory(Pageable pageable, Integer category, String name) {
+        return repository.findAllCategory(pageable,category,"%"+ name + "%");
+    }
+
+
 }

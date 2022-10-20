@@ -1,4 +1,4 @@
-<div class="card" style="margin-top: 125px ; margin-bottom: 50px">
+<div class="card" style="margin-top: 125px ; margin-bottom: 50px" >
   <div class="row">
     <div class="col-md-8 cart">
       <div class="title">
@@ -63,19 +63,22 @@
           </svg></a></div>
         </div>
       </div>
-      <a href="#" style="text-decoration: none"><div class="back-to-shop"><span class="text-muted">Trở về trang chủ</span></div></a>
+      <a href="#" style="text-decoration: none"><div class="back-to-shop"><span class="text-muted">Tiếp tục mua sắm</span></div></a>
     </div>
-    <div class="col-md-4 summary">
+    <div class="col-md-4 summary" >
       <div><h5><b>Thanh toán</b></h5></div>
       <hr>
-      <div class="row">
-        <div class="col" style="padding-left:0;"><strong>Nguyễn Văn A</strong></div>
+      <div class="row" >
+       <div class="col-md-6"> <p><strong>Tài khoản: </strong></p></div>
+       <div class="col-md-6" style="padding-left:0"><strong>{{user.username}}</strong></div>
       </div>
-      <div class="row">
-        <div class="col" style="padding-left:0;"><strong>07551651651</strong></div>
+      <div class="row" >
+        <div class="col-md-6"> <p><strong>Số Điện Thoại: </strong></p></div>
+        <div class="col-md-6" style="padding-left:0;"><strong>{{user.phone}}</strong></div>
       </div>
-      <div class="row">
-        <div class="col" style="padding-left:0;">295 ,Nguyễn Tất Thành , Hải Châu, Đà Nẵng</div>
+      <div class="row" >
+        <div class="col-md-6"> <p ><strong>Địa chỉ: </strong></p></div>
+        <div class="col-md-6" style="padding-left:0;"><strong>{{user.address}}</strong></div>
       </div>
       <form>
         <p>Đơn vị ship</p>

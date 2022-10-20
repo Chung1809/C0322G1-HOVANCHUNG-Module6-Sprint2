@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenStorageService} from "../service/token-storage.service";
-import {ShareService} from "../service/share.service";
+import {TokenStorageService} from '../service/token-storage.service';
+import {ShareService} from '../service/share.service';
+import {BookService} from '../service/book.service';
+import {Category} from '../model/category';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +17,14 @@ export class HeaderComponent implements OnInit {
   currentUser: string;
   role: string;
   isLoggedIn = false;
+  categoryList: Category[];
+  id: number;
+
 
   constructor(private tokenStorageService: TokenStorageService,
-              private shareService: ShareService) {
+              private shareService: ShareService,
+              private category: BookService,
+              private route: Router) {
     this.shareService.getClickEvent().subscribe(() => {
       this.loadHeader();
     });
@@ -24,6 +32,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadHeader();
+    this.category.getCategory().subscribe(next => {
+      this.categoryList = next;
+    });
+  }
+  getId(id: number) {
+   this.route.navigateByUrl('category/' + id );
   }
 
   loadHeader(): void {
