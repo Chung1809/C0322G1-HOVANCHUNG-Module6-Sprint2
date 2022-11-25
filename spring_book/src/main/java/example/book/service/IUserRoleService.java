@@ -2,6 +2,7 @@ package example.book.service;
 
 
 
+import example.book.model.AppUser;
 import example.book.model.UserRole;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface IUserRoleService {
      * @creator LongNT
      * @day 12/09/2022
      */
-    void save(UserRole userRole);
+    void save(Integer userRole);
 
     void deleteUserRole(int id);
 

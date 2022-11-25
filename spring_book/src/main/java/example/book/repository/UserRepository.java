@@ -60,7 +60,7 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
      * @day 12/09/2022
      */
     @Modifying
-    @Query(value = "insert into app_user (username, `password`, email, creation_date, is_deleted) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
+    @Query(value = "insert into app_user (username, `password`, email, creation_date, `status`) values (:username, :password, :email, current_date(), 0)", nativeQuery = true)
     void save(@Param("username") String username, @Param("password") String password, @Param("email") String email);
 
 

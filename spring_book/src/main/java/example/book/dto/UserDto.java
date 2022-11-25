@@ -1,16 +1,11 @@
 package example.book.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import example.book.model.CartDetail;
 import example.book.model.Customer;
 import example.book.model.UserRole;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,7 +28,7 @@ public class UserDto implements Validator {
 
     private Integer status =0;
 
-    private CartDetail cartDetail;
+    private CartDetail cart;
     private Customer customer;
 
     private List<UserRole> userRoles;
@@ -41,7 +36,7 @@ public class UserDto implements Validator {
     public UserDto() {
     }
 
-    public UserDto(Integer id, String username, String password, String email, LocalDate creationDate, String phone, String address, Integer status, CartDetail cartDetail, Customer customer, List<UserRole> userRoles) {
+    public UserDto(Integer id, String username, String password, String email, LocalDate creationDate, String phone, String address, Integer status, CartDetail cart, Customer customer, List<UserRole> userRoles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -50,7 +45,7 @@ public class UserDto implements Validator {
         this.phone = phone;
         this.address = address;
         this.status = status;
-        this.cartDetail = cartDetail;
+        this.cart = cart;
         this.customer = customer;
         this.userRoles = userRoles;
     }
@@ -119,12 +114,12 @@ public class UserDto implements Validator {
         this.status = status;
     }
 
-    public CartDetail getCartDetail() {
-        return cartDetail;
+    public CartDetail getCart() {
+        return cart;
     }
 
-    public void setCartDetail(CartDetail cartDetail) {
-        this.cartDetail = cartDetail;
+    public void setCart(CartDetail cart) {
+        this.cart = cart;
     }
 
     public Customer getCustomer() {
@@ -171,7 +166,7 @@ public class UserDto implements Validator {
      *
      * @param target the object that is to be validated
      * @param errors contextual state about the validation process
-     * @see ValidationUtils
+     * @see
      */
     @Override
     public void validate(Object target, Errors errors) {

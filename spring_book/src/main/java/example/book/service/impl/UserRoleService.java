@@ -1,5 +1,6 @@
 package example.book.service.impl;
 
+import example.book.model.AppUser;
 import example.book.model.UserRole;
 import example.book.repository.UserRepository;
 import example.book.repository.UserRoleRepository;
@@ -36,8 +37,8 @@ public class UserRoleService implements IUserRoleService {
      */
 
     @Override
-    public void save(UserRole userRole) {
-        userRoleRepository.save(userRole.getAppRole().getId(), userRole.getAppUser().getId());
+    public void save(Integer userRole) {
+        userRoleRepository.save(userRole);
     }
 
 

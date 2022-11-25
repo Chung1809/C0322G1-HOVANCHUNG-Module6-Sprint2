@@ -1,30 +1,38 @@
 package example.book.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class CartDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String quantity;
+    private Integer quantity;
     private Integer status;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private AppUser user;
+    private AppUser appUser;
     public CartDetail() {
     }
 
-    public CartDetail(Integer id, String quantity, Integer status, Book book, AppUser user) {
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public CartDetail(Integer id, Integer quantity, Integer status, Book book) {
         this.id = id;
         this.quantity = quantity;
         this.status = status;
         this.book = book;
-        this.user = user;
     }
 
     public Integer getId() {
@@ -35,11 +43,11 @@ public class CartDetail {
         this.id = id;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -59,11 +67,5 @@ public class CartDetail {
         this.book = book;
     }
 
-    public AppUser getUser() {
-        return user;
-    }
 
-    public void setUser(AppUser user) {
-        this.user = user;
-    }
 }

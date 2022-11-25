@@ -1,0 +1,30 @@
+<div class="card" style="margin-top: 125px ; margin-bottom: 50px" >
+  <div class="row" >
+    <div class="col-md-12 cart" >
+      <div class="title">
+        <div class="row">
+          <div class="col-md-3">Hình ảnh</div>
+          <div class="col-md-3 align-self-center text-right text-muted">Số lượng</div>
+          <div class="col-md-3 align-self-center text-right text-muted">Đơn giá</div>
+          <div class="col-md-3 align-self-center text-right text-muted">Thành tiền</div>
+        </div>
+      </div>
+      <div class="row border-top border-bottom" *ngFor="let temp of getCart">
+        <div class="row main align-items-center">
+          <div class="col-md-3"><img class="img-fluid" src="{{temp.book.image}}"></div>
+          <div class="col-md-3">
+            <a style="text-decoration: none; border-radius: 15px"class="border">{{temp.quantity}}</a>
+          </div>
+          <div class="col-md-3">{{temp.book.price| currency: '' :'':'5.0'}}đ</div>
+          <div class="col-md-3">
+            {{temp.quantity * temp.book.price| currency: '' :'':'5.0'}}đ
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,66 @@
+<div class="container mt-5" >
+  <section class="vh-60" >
+    <div class="container py-5 h-100">
+      <div   class="row d-flex align-items-center justify-content-center h-100 mt-5">
+        <div style="padding-left: 0px; padding-right: 0px;" class=" img col-md-8 col-lg-7 col-xl-6 ">
+          <img  src="https://img.freepik.com/free-vector/gradient-world-book-day-illustration_23-2148873928.jpg?w=740&t=st=1664618886~exp=1664619486~hmac=7986a2ea8ddca4b73ec5e9b5cb1bc0d8831ef4ce48a8cdb865e3779e50b90a24"
+               class="img-fluid " style="width: 100%; height: 500px ; border-radius: 30px" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 mt-5">
+          <h3 style="text-align: center;color: #5fcf80">ĐĂNG NHẬP</h3>
+          <form [formGroup]="formGroup" >
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example13"><strong>Tài khoản</strong></label>
+              <input type="text" id="form1Example13" formControlName="username" class="form-control form-control-lg" />
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form1Example23"><strong>Mật khẩu</strong></label>
+              <input type="password" id="form1Example23" formControlName="password" class="form-control form-control-lg" />
+            </div>
+
+            <div class="d-flex justify-content-around align-items-center mb-4">
+              <!-- Checkbox -->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" formControlName="remember_me" id="customCheck1"/>
+                <label  class="form-check-label" for="customCheck1"> Lưu mật  khẩu </label>
+              </div>
+              <a style="color: #5fcf80;text-decoration: none" href="#!">Quên mật khẩu?</a>
+            </div>
+
+            <!-- Submit button -->
+            <div > <button style="width: 100%;background-color: #5fcf80;color: white" type="submit" class="btn" (click)="onSubmit()">
+              Đăng nhập</button></div>
+
+            <div class="divider d-flex align-items-center my-4">
+              <p class="text-center fw-bold mx-3 mb-0 text-muted">Hoặc đăng nhập với</p>
+            </div>
+            <div style="text-align: center" class="col-auto">
+              <ul class="list-inline text-left footer-icons">
+                <li (click)="signInWithFB()" class="list-inline-item border border-light rounded-circle text-center">
+                  <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/">
+                    <svg  style="color: #5fcf80;font-size: 20px" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                      <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                    </svg>
+                  </a>
+                </li>
+                <li class="list-inline-item border border-light rounded-circle text-center">
+                  <a (click)="signInWithGoogle()" class="text-light text-decoration-none" target="_blank" href="https://www.gmail.com/">
+                    <svg style="color: #5fcf80;font-size: 20px" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <p style="text-align: center"><a  href="">Tạo tài khoản mới</a></p>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,49 @@
+<div class="example-container mat-elevation-z8 container" style="margin-top: 150px; width: 850px; margin-bottom: 50px  ">
+  <mat-drawer-container class="drawer-container">
+    <mat-drawer mode="side" opened class="left-drawer">
+      <div class="users-pane">
+        <ng-container matColumnDef="roomname">
+          <table mat-table [dataSource]="rooms" class="example-table"
+                 matSort matSortActive="roomname" matSortDisableClear matSortDirection="asc">
+            <ng-container matColumnDef="roomname">
+              <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="enterChatRoom(row.username)"></tr>
+          </table>
+        </ng-container>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content class="chat-pane position-relative">
+      <div #chatcontent [scrollTop]="scrolltop" class="chat-content">
+        <div class="message-box" *ngFor="let chat of chats">
+          <div class="chat-status" *ngIf="chat.type==='join'||chat.type==='exit';else message">
+            <span class="chat-date">{{chat.date }}</span>
+            <span class="chat-content-center">{{chat.message}}</span>
+          </div>
+          <ng-template #message>
+            <div class="chat-message">
+              <div class="right-bubble"
+                   [ngClass]="{'right-bubble': chat.user === nickname.username, 'left-bubble': chat.user !== nickname.username}">
+                <span class="msg-name" *ngIf="chat.user === nickname.username">{{chat.user}} {{chat.date}}</span>
+                <span class="msg-name" *ngIf="chat.user !== nickname.username">{{chat.name}} {{chat.date}}</span>
+                <p text-wrap>{{chat.message}}</p>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <footer class="sticky-footer">
+        <form class="message-form" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value)">
+          <mat-form-field class="message-form-field">
+            <input matInput placeholder="Gửi tin nhắn" formControlName="message"
+                   [errorStateMatcher]="matcher">
+            <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="Send">
+              <mat-icon>send</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </footer>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>

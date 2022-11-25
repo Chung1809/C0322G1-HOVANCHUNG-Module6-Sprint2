@@ -23,12 +23,13 @@ public class BookDto implements Validator {
     private Integer status = 0;
     private Category category;
     private Discount discount;
-    private Set<CartDetail> cartDetails;
+    private Set<CartDetail> carts;
+
 
     public BookDto() {
     }
 
-    public BookDto(Integer id, String code, String name, String description, String price, String image, String publisher, String totalPage, String author, LocalDate releaseDate, Integer status, Category category, Discount discount, Set<CartDetail> cartDetails) {
+    public BookDto(Integer id, String code, String name, String description, String price, String image, String publisher, String totalPage, String author, LocalDate releaseDate, Integer status, Category category, Discount discount, Set<CartDetail> carts) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -42,7 +43,7 @@ public class BookDto implements Validator {
         this.status = status;
         this.category = category;
         this.discount = discount;
-        this.cartDetails = cartDetails;
+        this.carts = carts;
     }
 
     public Integer getId() {
@@ -149,12 +150,12 @@ public class BookDto implements Validator {
         this.discount = discount;
     }
 
-    public Set<CartDetail> getCartDetails() {
-        return cartDetails;
+    public Set<CartDetail> getCarts() {
+        return carts;
     }
 
-    public void setCartDetails(Set<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
+    public void setCarts(Set<CartDetail> carts) {
+        this.carts = carts;
     }
 
     @Override

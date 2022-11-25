@@ -1,10 +1,12 @@
 package example.book.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 
@@ -30,8 +32,12 @@ public class AppUser {
 
     private Integer status =0;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private CartDetail cartDetail;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private CartDetail cartDetail;
+
+    @OneToMany(mappedBy = "appUser")
+    @JsonBackReference
+    private Set<CartDetail> cartDetails;
 
     @JsonIgnore
     @OneToOne(mappedBy = "appUser")
@@ -44,7 +50,7 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(Integer id, String username, String password, String email, LocalDate creationDate, String phone, String address, Integer status, CartDetail cartDetail, Customer customer, List<UserRole> userRoles) {
+    public AppUser(Integer id, String username, String password, String email, LocalDate creationDate, String phone, String address, Integer status, CartDetail cartDetail, Customer customer) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -53,9 +59,8 @@ public class AppUser {
         this.phone = phone;
         this.address = address;
         this.status = status;
-        this.cartDetail = cartDetail;
+//        this.cartDetail = (Set<CartDetail>) cartDetail;
         this.customer = customer;
-        this.userRoles = userRoles;
     }
 
     public Integer getId() {
@@ -122,13 +127,7 @@ public class AppUser {
         this.status = status;
     }
 
-    public CartDetail getCartDetail() {
-        return cartDetail;
-    }
 
-    public void setCartDetail(CartDetail cartDetail) {
-        this.cartDetail = cartDetail;
-    }
 
     public Customer getCustomer() {
         return customer;
@@ -138,11 +137,5 @@ public class AppUser {
         this.customer = customer;
     }
 
-    public List<UserRole> getUserRoles() {
-        return userRoles;
-    }
 
-    public void setUserRoles(List<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
 }
